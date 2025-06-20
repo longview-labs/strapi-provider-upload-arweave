@@ -13,9 +13,6 @@
   <a href="https://www.npmjs.org/package/@longviewlabs/strapi-provider-upload-arweave">
     <img src="https://img.shields.io/npm/dm/@longviewlabs/strapi-provider-upload-arweave.svg" alt="Monthly download on NPM" />
   </a>
-  <a href="https://codecov.io/gh/longview-labs/strapi-provider-upload-arweave">
-    <img src="https://codecov.io/gh/longview-labs/strapi-provider-upload-arweave/branch/master/graph/badge.svg?token=p4KW9ytA6u" alt="codecov.io" />
-  </a>
 </div>
 
 ## 📋 Table of Contents
