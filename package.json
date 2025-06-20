@@ -1,0 +1,81 @@
+{
+  "name": "@longviewlabs/strapi-provider-upload-arweave",
+  "version": "5.0.0",
+  "description": "Arweave upload provider for Strapi v5",
+  "keywords": [
+    "strapi",
+    "upload",
+    "provider",
+    "arweave",
+    "storage"
+  ],
+  "license": "MIT",
+  "author": {
+    "name": "Jeffrey Chan",
+    "email": "jeffrey@devjeff.info"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "source": "./src/index.ts",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "build": "npm run build:code && npm run build:types",
+    "build:code": "rollup -c",
+    "build:types": "tsc -p tsconfig.build.json --emitDeclarationOnly",
+    "build:prod": "npm run clean && npm run build",
+    "build:watch": "rollup -c -w",
+    "clean": "rm -rf ./dist",
+    "lint": "eslint .",
+    "test:unit": "jest",
+    "test:unit:watch": "jest --watch",
+    "test:unit:ci": "CI=true jest --ci --runInBand --verbose --coverage"
+  },
+  "dependencies": {
+    "@ardrive/turbo-sdk": "^1.27.0",
+    "arweave": "^1.15.7",
+    "slugify": "^1.6.6",
+    "zod": "^4.0.0-beta.20250415T232143"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "28.0.1",
+    "@rollup/plugin-dynamic-import-vars": "2.1.5",
+    "@rollup/plugin-image": "3.0.3",
+    "@rollup/plugin-json": "6.1.0",
+    "@rollup/plugin-node-resolve": "15.3.0",
+    "@rollup/plugin-swc": "0.4.0",
+    "@strapi/eslint-config": "^0.2.1",
+    "@swc/core": "1.3.10",
+    "@tsconfig/node18": "^18.2.4",
+    "@types/jest": "^29.5.14",
+    "@typescript-eslint/eslint-plugin": "^5.14.0",
+    "@typescript-eslint/parser": "^5.14.0",
+    "eslint": "^8.10.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-airbnb-typescript": "^16.1.1",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^5.2.6",
+    "jest": "^29.7.0",
+    "jest-junit": "^16.0.0",
+    "prettier": "^3.5.3",
+    "rollup": "4.27.4",
+    "rollup-plugin-html": "0.2.1",
+    "ts-jest": "^29.3.1",
+    "ts-node": "^10.9.2",
+    "typescript": "5.4.4"
+  },
+  "engines": {
+    "node": ">=18.0.0 <=22.x.x",
+    "npm": ">=8"
+  },
+  "strapi": {
+    "isProvider": true
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
