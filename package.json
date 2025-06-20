@@ -1,6 +1,6 @@
 {
   "name": "@longviewlabs/strapi-provider-upload-arweave",
-  "version": "5.0.1",
+  "version": "5.0.2",
   "description": "Arweave upload provider for Strapi v5",
   "keywords": [
     "strapi",
@@ -19,7 +19,8 @@
   "source": "./src/index.ts",
   "types": "./dist/index.d.ts",
   "files": [
-    "dist/"
+    "dist/",
+    "NOTICE"
   ],
   "scripts": {
     "build": "npm run build:code && npm run build:types",
