@@ -1,4 +1,4 @@
-import type { DefaultOptions, File } from '../types';
+import type { DefaultOptions } from '../types';
 import { getConfigDefaultValues } from '../utils';
 import { testArweaveWallet } from './helpers';
 

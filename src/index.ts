@@ -66,7 +66,7 @@ export default {
       async uploadStream(file: File) {
         return upload(file);
       },
-      async delete(file: File) {
+      async delete(_file: File) {
         return 'Files save on Arweave cannot be deleted as they are immutable.';
       },
       isPrivate() {
