@@ -8,7 +8,7 @@ const partialOptions: DefaultOptions = {
 
 const completeOptions: DefaultOptions = {
   arweaveWallet: JSON.stringify(testArweaveWallet),
-  gateway: "https://ar.io",
+  gateway: 'https://ar.io',
   getContentType: jest.fn(),
 };
 
@@ -27,7 +27,7 @@ describe('Utils', () => {
       const config = getConfigDefaultValues(completeOptions);
       expect(config).toEqual({
         ...completeOptions,
-        arweaveWallet: testArweaveWallet
+        arweaveWallet: testArweaveWallet,
       });
     });
   });
@@ -39,7 +39,9 @@ describe('Utils', () => {
           'Error parsing Arweave Wallet JSON, please ensure it is a valid JWK format.'
         );
         // @ts-ignore Test wrong configuration
-        expect(() => getConfigDefaultValues({ ...partialOptions, arweaveWallet: undefined })).toThrow(error);
+        expect(() =>
+          getConfigDefaultValues({ ...partialOptions, arweaveWallet: undefined })
+        ).toThrow(error);
       });
       test('Throws error when arweaveWallet cannot be parsed as a JSON', () => {
         const arweaveWallet = "I'm not a valid JSON";
@@ -48,21 +50,24 @@ describe('Utils', () => {
         );
         expect(() => getConfigDefaultValues({ ...partialOptions, arweaveWallet })).toThrow(error);
       });
-      
+
       test('Throws error when arweaveWallet can be parsed as a JSON, but contains random value', () => {
         const arweaveWallet = '{"random": "value"}'; // Not a valid JWK
-        const error = new Error( "Invalid JWK format. Please check the content of your Arweave Wallet JWK");
+        const error = new Error(
+          'Invalid JWK format. Please check the content of your Arweave Wallet JWK'
+        );
         expect(() => getConfigDefaultValues({ ...partialOptions, arweaveWallet })).toThrow(error);
       });
 
       test('Throws error when arweaveWallet is not a valid JWK', () => {
         const arweaveWallet = '{ "e": "something", "n": "something" }'; // Missing kty
-        const error = new Error( "Invalid JWK format. Please check the content of your Arweave Wallet JWK");
+        const error = new Error(
+          'Invalid JWK format. Please check the content of your Arweave Wallet JWK'
+        );
         expect(() => getConfigDefaultValues({ ...partialOptions, arweaveWallet })).toThrow(error);
       });
     });
-    
-    describe('Valid config', () => {
-    });
+
+    describe('Valid config', () => {});
   });
 });

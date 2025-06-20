@@ -63,7 +63,7 @@ describe('Provider', () => {
         dataItemOpts: {
           tags: [
             {
-              name: "Content-Type",
+              name: 'Content-Type',
               value: mockedFileData.mime,
             },
           ],
@@ -82,7 +82,7 @@ describe('Provider', () => {
         dataItemOpts: {
           tags: [
             {
-              name: "Content-Type",
+              name: 'Content-Type',
               value: mockedFileStreamData.mime,
             },
           ],
@@ -90,14 +90,18 @@ describe('Provider', () => {
       });
     });
 
-    test('throws error if file size is greater than 100KB and wallet does not have enough balance', async () => {
-      (TurboFactory.authenticated  as jest.Mock).mockImplementationOnce(actualAuthenticated);
-      const providerInstance = provider.init(mockedConfig);
-      const error = new Error(
-        'Insufficient balance. Please follow the documentation on how to top up your ArDrive Turbo account (https://github.com/longview-labs/strapi-provider-upload-arweave?tab=readme-ov-file#how-to-pay-for-uploads)'
-      );
-      await expect(providerInstance.upload(mockedBigFileData)).rejects.toThrow(error);
-    }, 30 * 1000);
+    test(
+      'throws error if file size is greater than 100KB and wallet does not have enough balance',
+      async () => {
+        (TurboFactory.authenticated as jest.Mock).mockImplementationOnce(actualAuthenticated);
+        const providerInstance = provider.init(mockedConfig);
+        const error = new Error(
+          'Insufficient balance. Please follow the documentation on how to top up your ArDrive Turbo account (https://github.com/longview-labs/strapi-provider-upload-arweave?tab=readme-ov-file#how-to-pay-for-uploads)'
+        );
+        await expect(providerInstance.upload(mockedBigFileData)).rejects.toThrow(error);
+      },
+      30 * 1000
+    );
   });
 
   describe('Delete', () => {
@@ -119,7 +123,10 @@ describe('Provider', () => {
     });
 
     test('Get url with custom gateway', async () => {
-      const config = { arweaveWallet: mockedConfig.arweaveWallet, gateway: 'https://custom-gateway.com' };
+      const config = {
+        arweaveWallet: mockedConfig.arweaveWallet,
+        gateway: 'https://custom-gateway.com',
+      };
       const providerInstance = provider.init(config);
       expect(providerInstance.getSignedUrl(mockedFileData)).resolves.toEqual({
         url: `https://custom-gateway.com/${mockedFileData.url}`,

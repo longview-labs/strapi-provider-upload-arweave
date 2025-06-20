@@ -1,5 +1,5 @@
-import type { DefaultOptions, File } from './types';
 import { TurboFactory } from '@ardrive/turbo-sdk';
+import type { DefaultOptions, File } from './types';
 import { getConfigDefaultValues, prepareUploadFile } from './utils';
 
 export default {
@@ -35,7 +35,7 @@ export default {
           dataItemOpts: {
             tags: [
               {
-                name: "Content-Type",
+                name: 'Content-Type',
                 value: fileContentType,
               },
             ],
@@ -45,8 +45,9 @@ export default {
         file.url = `${res.id}`;
       } catch (error: any) {
         if (error.status === 402) {
-          const message = `Insufficient balance. Please follow the documentation on how to top up your ArDrive Turbo account (https://github.com/longview-labs/strapi-provider-upload-arweave?tab=readme-ov-file#how-to-pay-for-uploads)`;
-          console.error(message)
+          const message =
+            'Insufficient balance. Please follow the documentation on how to top up your ArDrive Turbo account (https://github.com/longview-labs/strapi-provider-upload-arweave?tab=readme-ov-file#how-to-pay-for-uploads)';
+          console.error(message);
           throw new Error(message);
         } else if (error instanceof Error && 'message' in error) {
           const message = `Error uploading file to Arweave: ${error.message}`;
@@ -66,7 +67,7 @@ export default {
         return upload(file);
       },
       async delete(file: File) {
-        return "Files save on Arweave cannot be deleted as they are immutable.";
+        return 'Files save on Arweave cannot be deleted as they are immutable.';
       },
       isPrivate() {
         return true;
@@ -74,7 +75,7 @@ export default {
       async getSignedUrl(file: File) {
         // transform url to specific gateway
         return {
-          url: `${config.gateway}/${file.url}`
+          url: `${config.gateway}/${file.url}`,
         };
       },
     };

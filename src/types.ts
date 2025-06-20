@@ -29,16 +29,18 @@ export type File = z.infer<typeof fileSchema> & {
 };
 
 const jwkSchema = z.object({
-	"kty": z.string({ error: "Invalid JWK format. Please check the content of your Arweave Wallet JWK" }),
-	"e": z.string({ error: "Invalid JWK format. Please check the content of your Arweave Wallet JWK" }),
-	"n": z.string({ error: "Invalid JWK format. Please check the content of your Arweave Wallet JWK" }),
-  "d": z.string().optional(),
-	"dp": z.string().optional(),
-	"dq": z.string().optional(),
-	"ext": z.boolean().optional(),
-	"p": z.string().optional(),
-	"q": z.string().optional(),
-	"qi": z.string().optional(),
+  kty: z.string({
+    error: 'Invalid JWK format. Please check the content of your Arweave Wallet JWK',
+  }),
+  e: z.string({ error: 'Invalid JWK format. Please check the content of your Arweave Wallet JWK' }),
+  n: z.string({ error: 'Invalid JWK format. Please check the content of your Arweave Wallet JWK' }),
+  d: z.string().optional(),
+  dp: z.string().optional(),
+  dq: z.string().optional(),
+  ext: z.boolean().optional(),
+  p: z.string().optional(),
+  q: z.string().optional(),
+  qi: z.string().optional(),
 });
 
 type GetContentTypeFn = (file: File) => string;
@@ -48,20 +50,19 @@ const defaultGetContentType = (file: File) => file.mime;
 export const defaultGateway = 'https://arweave.net';
 
 export const optionsSchema = z.object({
-  arweaveWallet: z
-    .preprocess((input) => {
-      if (typeof input === 'string') {
-        try {
-          return JSON.parse(input);
-        } catch {
-          throw new Error(
-            'Arweave Wallet provided is not a valid JSON. Please ensure it is a valid JWK format.'
-          );
-        }
+  arweaveWallet: z.preprocess((input) => {
+    if (typeof input === 'string') {
+      try {
+        return JSON.parse(input);
+      } catch {
+        throw new Error(
+          'Arweave Wallet provided is not a valid JSON. Please ensure it is a valid JWK format.'
+        );
       }
-      
-      return input;
-    }, jwkSchema),
+    }
+
+    return input;
+  }, jwkSchema),
   gateway: z.url().default(defaultGateway),
   getContentType: z
     .custom<GetContentTypeFn>((val) => typeof val === 'function')

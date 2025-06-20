@@ -1,10 +1,5 @@
 import z from 'zod';
-import {
-  optionsSchema,
-  type DefaultOptions,
-  type File,
-  type Options,
-} from './types';
+import { optionsSchema, type DefaultOptions, type File, type Options } from './types';
 
 export const getConfigDefaultValues = (config: DefaultOptions) => {
   try {
@@ -18,13 +13,11 @@ export const getConfigDefaultValues = (config: DefaultOptions) => {
   }
 };
 
-export const prepareUploadFile = async (
-  file: File,
-  config: Options,
-) => {
-  let fileBuffer : Buffer;
-  if (file.stream) { // convert stream to buffer
-    const buffers = []
+export const prepareUploadFile = async (file: File, config: Options) => {
+  let fileBuffer: Buffer;
+  if (file.stream) {
+    // convert stream to buffer
+    const buffers = [];
     for await (const chunk of file.stream) {
       buffers.push(chunk);
     }
@@ -36,7 +29,7 @@ export const prepareUploadFile = async (
     throw new Error('File must have either a stream or a buffer.');
   }
 
-  const fileSize = fileBuffer.length
+  const fileSize = fileBuffer.length;
 
   const fileContentType = config.getContentType(file);
 
