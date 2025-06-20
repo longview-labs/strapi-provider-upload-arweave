@@ -1,6 +1,6 @@
 {
   "name": "@longviewlabs/strapi-provider-upload-arweave",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "description": "Arweave upload provider for Strapi v5",
   "keywords": [
     "strapi",
